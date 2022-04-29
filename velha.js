@@ -2,6 +2,8 @@ var jogador = 'X'
 var jogadorSelecionado = document.getElementById('jogador-selecionado')
 var vencedorSelecionado = document.getElementById('vencedor-selecionado')
 
+jogadorSelecionado.innerHTML = 'X'
+
 function escolherQuadrado(id) {
   var quadrado = document.getElementById(id)
 
@@ -19,7 +21,7 @@ function escolherQuadrado(id) {
   }
 
   mudarJogador(jogador)
-  if (checaVencedor() === 'X' || checaVencedor === 'O') {
+  if (checaVencedor() === 'X' || checaVencedor() === 'O') {
     vencedorSelecionado.innerHTML = checaVencedor()
   }
 }
@@ -58,15 +60,34 @@ function checaVencedor() {
 }
 
 function checaLinha(a, b, c) {
-  a = document.getElementById(a).innerHTML
-  b = document.getElementById(b).innerHTML
-  c = document.getElementById(c).innerHTML
+  aa = document.getElementById(a).innerHTML
+  bb = document.getElementById(b).innerHTML
+  cc = document.getElementById(c).innerHTML
 
-  if (a !== '-' && a !== '-' && a !== '-') {
-    if (a === b && b === c) {
+  if (aa !== '-' && bb !== '-' && cc !== '-') {
+    if (aa === bb && bb === cc) {
+      mudaCorQuadrado(a, b, c)
       return true
     }
   }
 
   return false
+}
+
+function mudaCorQuadrado(a, b, c) {
+  document.getElementById(a).style.background = '#0f8'
+  document.getElementById(b).style.background = '#0f8'
+  document.getElementById(c).style.background = '#0f8'
+}
+
+function reiniciar() {
+  for (i = 1; i < 10; i++) {
+    var quadrado = document.getElementById(i)
+    quadrado.style.background = 'rgb(131, 129, 129)'
+    quadrado.style.color = 'rgb(131, 129, 129)'
+    quadrado.innerHTML = '-'
+  }
+  jogador = 'X'
+  jogadorSelecionado.innerHTML = 'X'
+  vencedorSelecionado.innerHTML = null
 }
